@@ -1,0 +1,13 @@
+#gameBoard {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 10px;
+    width: 320px;
+}
+.tile {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(143, 143, 147);
+    border-radius: 10px;
+    cursor: pointer;
+}
