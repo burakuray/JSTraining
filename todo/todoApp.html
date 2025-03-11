@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+    <h1>Todo List</h1>
+    <input id="input" type="text" placeholder="Enter a task">
+    <button id="button" onclick="addItem()">Save</button>
+    <ul id="todoList"></ul>
+
+    <script>
+        function addItem() {
+            const listItem = document.getElementById('input').value;
+            const todoList = document.getElementById('todoList');
+            document.getElementById('input').value = '';
+
+            if(listItem){
+                const li = document.createElement('li');
+                li.appendChild(document.createTextNode(listItem));
+
+                const removeButton = document.createElement('button');
+                removeButton.appendChild(document.createTextNode('Remove'));
+                removeButton.classList.add('danger');
+                removeButton.onclick = function(){
+                    todoList.removeChild(li);
+                }
+                li.appendChild(removeButton);
+                todoList.appendChild(li);
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Shopping List</h1>
+    <input id="input" type="text" placeholder="Enter an item">
+    <button id="button" onclick="addItem()">Save</button>
+    <ul id="shopingList"></ul>
+    <script>
+        const savedList = localStorage.getItem('shoppingList') ? JSON.parse(localStorage.getItem('shoppingList')) : [];
+        if(savedList.length){
+            savedList.forEach(item => {
+                const li = document.createElement('li');
+                li.appendChild(document.createTextNode(item));
+                document.getElementById('shopingList').appendChild(li);
+            });
+        }
+        function addItem() {
+            const input = document.getElementById('input').value;
+            const list = document.getElementById('shopingList');
+
+            if(input){
+                const li = document.createElement('li');
+                li.appendChild(document.createTextNode(input));
+                list.appendChild(li);
+                savedList.push(input);
+                localStorage.setItem('shoppingList', JSON.stringify(savedList));
+            }
+        
+        }
+        
+    </script>
+    
+</body>
+</html> 

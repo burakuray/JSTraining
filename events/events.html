@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="clickMe">Click</button>
+    <h1 id="events"></h1>
+
+    <input id="input" type="password">
+    <h1 id="inputValue"></h1>
+
+    <script>
+            const btn = document.getElementById('clickMe');
+            btn.addEventListener('click', clickMe);
+            function clickMe() {
+                if (document.getElementById('events').textContent === 'Button Clicked') 
+                    document.getElementById('events').textContent = '';
+                 else
+                    document.getElementById('events').textContent = 'Button Clicked';
+            };
+
+            const input = document.getElementById('input');
+            input.addEventListener('keydown', inputChange);
+            function inputChange(event) {
+                document.getElementById('inputValue').textContent = event.target.value;
+            };
+
+    </script>
+</body>
+</html>
