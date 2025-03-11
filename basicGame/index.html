@@ -20,6 +20,53 @@
         <div class="tile"></div>
         <div class="tile"></div>
     </div>
+    <p>Level: <span id="level">1</span></p>
+
+    <script>
+        const tiles = Array.from(document.querySelectorAll('.tile'));
+        let level = 0;
+        const sequence = [];
+        let userSequence = [];
+
+        function playSequnce(index){
+            if(index === sequence.length) return;
+            const tile = tiles[sequence[index]];
+            tile.style.backgroundColor = 'yellow';
+            setTimeout(() => {
+                tile.style.backgroundColor = '';
+                setTimeout(() => {
+                    playSequnce(index + 1);
+                }, 500);
+            }, 1000);
+        }
+
+        function startNewLevel(){
+            level++;
+            document.getElementById('level').textContent = level;
+            userSequence = [];
+            const selected = Math.floor(Math.random() * tiles.length);
+            sequence.push(selected);
+            playSequnce(0);
+        }
+
+        tiles.forEach((tile, index) => {
+            tile.addEventListener('click', () => {
+                if(sequence[userSequence.length] === index){
+                    userSequence.push(index);
+                    if(userSequence.length === sequence.length){
+                        setTimeout(() => {
+                            startNewLevel();
+                        }, 500);
+                    }
+                }else{
+                        alert('Game over');
+                        document.getElementById('level').textContent = 1;
+                    }
+            });
+        });
+
+        startNewLevel();
+    </script>
 
 </body>
 </html>
